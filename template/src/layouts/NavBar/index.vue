@@ -42,7 +42,7 @@
             <v-icon>language</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title>{{ item.label }}</v-list-tile-title>
+            <v-list-tile-title>\{{ item.label }}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
         <v-divider></v-divider>
@@ -89,10 +89,10 @@
                      rel="noopener"
                      :key="index">
           <v-list-tile-action v-if="item.icon">
-            <v-icon>{{ item.icon }}</v-icon>
+            <v-icon>\{{ item.icon }}</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+            <v-list-tile-title>\{{ item.title }}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
