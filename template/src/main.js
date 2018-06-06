@@ -16,6 +16,9 @@ import App from './App';
 import store from './store';
 import router from './router';
 
+// Import Internationalization
+import i18n from './i18n';
+
 Vue.config.productionTip = false;
 
 // Definition of the theme colors
@@ -33,10 +36,11 @@ const colors = {
 Vue.use(Vuetify, { theme: colors });
 
 /* eslint-disable no-new */
-new Vue({
+export default new Vue({
   el: '#app',
   router,
   store,
+  i18n,
   components: { App },
   template: '<App/>',
 });

@@ -19,7 +19,8 @@
                         <v-list-tile slot="activator"
                                      ripple="ripple">
                             <v-list-tile-content>
-                                <v-list-tile-title>\{{ item.meta.title }}</v-list-tile-title>
+                                <v-list-tile-title>{{ generateRouteTitle(item.meta.title) }}
+                                </v-list-tile-title>
                             </v-list-tile-content>
                         </v-list-tile>
                         <template v-for="(subItem, j) in item.children">
@@ -31,11 +32,12 @@
                                 <v-list-tile slot="activator"
                                              ripple="ripple">
                                     <v-list-tile-action>
-                                        <v-icon>\{{ subItem.meta.icon }}</v-icon>
+                                        <v-icon>{{ subItem.meta.icon }}</v-icon>
                                     </v-list-tile-action>
                                     <v-list-tile-content>
                                         <v-list-tile-title>
-                                            \{{ subItem.meta.title }}</v-list-tile-title>
+                                            {{ generateRouteTitle(subItem.meta.title) }}
+                                        </v-list-tile-title>
                                     </v-list-tile-content>
                                 </v-list-tile>
                                 <v-list-tile v-for="(grand, k) in subItem.children"
@@ -47,7 +49,8 @@
                                     </v-list-tile-action>
                                     <v-list-tile-content>
                                         <v-list-tile-title>
-                                            \{{ grand.meta.title }}</v-list-tile-title>
+                                            {{ generateRouteTitle(grand.meta.title) }}
+                                        </v-list-tile-title>
                                     </v-list-tile-content>
                                 </v-list-tile>
                             </v-list-group>
@@ -57,11 +60,12 @@
                                          :to="{name : subItem.name}"
                                          ripple="ripple">
                                 <v-list-tile-action>
-                                    <v-icon>\{{ subItem.meta.icon }}</v-icon>
+                                    <v-icon>{{ subItem.meta.icon }}</v-icon>
                                 </v-list-tile-action>
                                 <v-list-tile-content>
                                     <v-list-tile-title>
-                                        <span>\{{ subItem.meta.title }}</span>
+                                        <span>{{ generateRouteTitle(subItem.meta.title) }}
+                                        </span>
                                     </v-list-tile-title>
                                 </v-list-tile-content>
                             </v-list-tile>
@@ -69,7 +73,7 @@
                     </v-list-group>
                     <!--List headers-->
                     <v-subheader v-else-if="item.header"
-                                 :key="i">\{{ item.header }}</v-subheader>
+                                 :key="i">{{ item.header }}</v-subheader>
                     <!--List divider-->
                     <v-divider v-else-if="item.divider"
                                :key="i"></v-divider>
@@ -79,10 +83,11 @@
                                  ripple="ripple"
                                  :key="i">
                         <v-list-tile-action>
-                            <v-icon>\{{ item.meta.icon }}</v-icon>
+                            <v-icon>{{ item.meta.icon }}</v-icon>
                         </v-list-tile-action>
                         <v-list-tile-content>
-                            <v-list-tile-title>\{{ item.meta.title }}</v-list-tile-title>
+                            <v-list-tile-title>{{ generateRouteTitle(item.meta.title) }}
+                            </v-list-tile-title>
                         </v-list-tile-content>
                     </v-list-tile>
                 </template>
@@ -94,6 +99,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import VuePerfectScrollbar from 'vue-perfect-scrollbar';
+import { generateRouteTitle } from '@/utils/i18n';
 
 export default {
   name: 'c-navigation-drawer',
@@ -108,7 +114,8 @@ export default {
   computed: {
     routes() {
       const routes = this.$router.options.routes.find(
-        element => element.name === 'Root',
+        // eslint-disable-next-line
+        (element) => element.name === 'Root'
       );
       return routes.children;
     },
@@ -130,6 +137,7 @@ export default {
       }
       return `${item.group}/${subItem.name}`;
     },
+    generateRouteTitle,
   },
 };
 </script>
