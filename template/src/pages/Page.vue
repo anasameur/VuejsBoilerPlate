@@ -3,7 +3,7 @@
                fill-height>
     <v-layout justify-center
               align-center>
-      {{ generateMessage('main_message') }}
+      \{{ generateMessage('main_message') }}
       <v-tooltip right>
         <v-btn slot="activator"
                icon
@@ -12,7 +12,7 @@
                target="_blank">
           <v-icon large>code</v-icon>
         </v-btn>
-        <span>{{ generateMessage('main_message') }}</span>
+        <span>\{{ generateMessage('main_message') }}</span>
       </v-tooltip>
     </v-layout>
   </v-container>

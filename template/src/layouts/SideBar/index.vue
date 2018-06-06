@@ -19,7 +19,7 @@
                         <v-list-tile slot="activator"
                                      ripple="ripple">
                             <v-list-tile-content>
-                                <v-list-tile-title>{{ generateRouteTitle(item.meta.title) }}
+                                <v-list-tile-title>\{{ generateRouteTitle(item.meta.title) }}
                                 </v-list-tile-title>
                             </v-list-tile-content>
                         </v-list-tile>
@@ -32,11 +32,11 @@
                                 <v-list-tile slot="activator"
                                              ripple="ripple">
                                     <v-list-tile-action>
-                                        <v-icon>{{ subItem.meta.icon }}</v-icon>
+                                        <v-icon>\{{ subItem.meta.icon }}</v-icon>
                                     </v-list-tile-action>
                                     <v-list-tile-content>
                                         <v-list-tile-title>
-                                            {{ generateRouteTitle(subItem.meta.title) }}
+                                            \{{ generateRouteTitle(subItem.meta.title) }}
                                         </v-list-tile-title>
                                     </v-list-tile-content>
                                 </v-list-tile>
@@ -49,7 +49,7 @@
                                     </v-list-tile-action>
                                     <v-list-tile-content>
                                         <v-list-tile-title>
-                                            {{ generateRouteTitle(grand.meta.title) }}
+                                            \{{ generateRouteTitle(grand.meta.title) }}
                                         </v-list-tile-title>
                                     </v-list-tile-content>
                                 </v-list-tile>
@@ -60,11 +60,11 @@
                                          :to="{name : subItem.name}"
                                          ripple="ripple">
                                 <v-list-tile-action>
-                                    <v-icon>{{ subItem.meta.icon }}</v-icon>
+                                    <v-icon>\{{ subItem.meta.icon }}</v-icon>
                                 </v-list-tile-action>
                                 <v-list-tile-content>
                                     <v-list-tile-title>
-                                        <span>{{ generateRouteTitle(subItem.meta.title) }}
+                                        <span>\{{ generateRouteTitle(subItem.meta.title) }}
                                         </span>
                                     </v-list-tile-title>
                                 </v-list-tile-content>
@@ -73,7 +73,7 @@
                     </v-list-group>
                     <!--List headers-->
                     <v-subheader v-else-if="item.header"
-                                 :key="i">{{ item.header }}</v-subheader>
+                                 :key="i">\{{ item.header }}</v-subheader>
                     <!--List divider-->
                     <v-divider v-else-if="item.divider"
                                :key="i"></v-divider>
@@ -83,10 +83,10 @@
                                  ripple="ripple"
                                  :key="i">
                         <v-list-tile-action>
-                            <v-icon>{{ item.meta.icon }}</v-icon>
+                            <v-icon>\{{ item.meta.icon }}</v-icon>
                         </v-list-tile-action>
                         <v-list-tile-content>
-                            <v-list-tile-title>{{ generateRouteTitle(item.meta.title) }}
+                            <v-list-tile-title>\{{ generateRouteTitle(item.meta.title) }}
                             </v-list-tile-title>
                         </v-list-tile-content>
                     </v-list-tile>

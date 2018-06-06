@@ -30,7 +30,7 @@
               transition="scale-transition">
         <v-btn flat
                slot="activator">
-          <span>{{lang}}</span>
+          <span>\{{lang}}</span>
           <v-icon medium
                   right>language</v-icon>
         </v-btn>
@@ -43,7 +43,7 @@
               <v-icon>language</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
-              <v-list-tile-title>{{ item.label }}</v-list-tile-title>
+              <v-list-tile-title>\{{ item.label }}</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
           <v-divider></v-divider>
@@ -84,10 +84,10 @@
                        rel="noopener"
                        :key="index">
             <v-list-tile-action v-if="item.icon">
-              <v-icon>{{ item.icon }}</v-icon>
+              <v-icon>\{{ item.icon }}</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
-              <v-list-tile-title>{{ generateMessage(item.title) }}</v-list-tile-title>
+              <v-list-tile-title>\{{ generateMessage(item.title) }}</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
         </v-list>
