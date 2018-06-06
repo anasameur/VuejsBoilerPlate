@@ -3,7 +3,7 @@
                fill-height>
     <v-layout justify-center
               align-center>
-      Template Documentation &amp; GuideLine
+      \{{ generateMessage('main_message') }}
       <v-tooltip right>
         <v-btn slot="activator"
                icon
@@ -12,22 +12,23 @@
                target="_blank">
           <v-icon large>code</v-icon>
         </v-btn>
-        <span>Boilerplate Documentation</span>
+        <span>\{{ generateMessage('main_message') }}</span>
       </v-tooltip>
     </v-layout>
   </v-container>
 </template>
 
 <script>
+import { generateMessage } from '@/utils/i18n';
+
 export default {
   name: 'HelloWorld',
   data() {
     return {};
   },
-  computed: {
-    path() {
-      return this.$route.path; // parent route are just a layouts
-    },
+  computed: {},
+  methods: {
+    generateMessage,
   },
 };
 </script>
