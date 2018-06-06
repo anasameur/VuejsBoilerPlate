@@ -72,7 +72,6 @@ const router = new Router({
           meta: {
             title: 'Home',
             icon: 'home',
-            group: 'Tableaux de bord',
           },
         },
         {
@@ -82,7 +81,6 @@ const router = new Router({
           meta: {
             title: 'Site',
             icon: 'location_on',
-            group: 'Tableaux de bord',
           },
         },
         {
@@ -92,7 +90,6 @@ const router = new Router({
           meta: {
             title: 'Réseau',
             icon: 'perm_data_setting',
-            group: 'Tableaux de bord',
           },
         },
         {
@@ -102,7 +99,7 @@ const router = new Router({
           meta: {
             title: 'Indicateur',
             icon: 'assessment',
-            group: 'Tableaux de bord',
+            group: 'indicateur',
           },
           children: [
             {
@@ -130,6 +127,7 @@ const router = new Router({
               meta: {
                 title: 'Calculs',
                 icon: 'sync',
+                group: 'indicateur/calculs',
               },
               children: [
                 {
