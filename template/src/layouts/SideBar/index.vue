@@ -13,7 +13,7 @@
                     <!--group with subitems-->
                     <v-list-group v-if="item.children"
                                   :key="i"
-                                  :group="item.group"
+                                  :group="item.meta.group"
                                   :prepend-icon="item.meta.icon"
                                   no-action="no-action">
                         <v-list-tile slot="activator"
@@ -26,7 +26,7 @@
                             <!--sub group-->
                             <v-list-group v-if="subItem.children"
                                           :key="j"
-                                          :group="subItem.group"
+                                          :group="subItem.meta.group"
                                           no-action="no-action">
                                 <v-list-tile slot="activator"
                                              ripple="ripple">
