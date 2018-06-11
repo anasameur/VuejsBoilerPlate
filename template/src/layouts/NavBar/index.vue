@@ -5,56 +5,75 @@
              app
              height="58"
              fixed>
-    <v-toolbar-title class="ml-0 pl-3 c-toolbar"
-                     color="red">
-      <v-toolbar-side-icon @click.stop="toggleSideBar"></v-toolbar-side-icon>
-      <v-avatar tile>
+    <!-- hamburger icon for activing sidebar drawer -->
+    <v-toolbar-side-icon @click.stop="toggleSideBar"></v-toolbar-side-icon>
+    <v-spacer v-if="$vuetify.breakpoint.xs"></v-spacer>
+    <!-- Application logo -->
+    <!-- Small screen -->
+    <v-toolbar-title class="ml-0 c-toolbar">
+      <v-layout row
+                justify-center
+                v-if="$vuetify.breakpoint.xs">
+        <v-flex xs3>
+          <v-avatar tile>
+            <img src="@/assets/logo.png"
+                 alt="Engie Cofely"
+                 class="c-img">
+          </v-avatar>
+        </v-flex>
+      </v-layout>
+      <!-- Large screen -->
+      <v-avatar tile
+                v-else
+                class="ml-2">
         <img src="@/assets/logo.png"
              alt="Engie Cofely"
              class="c-img">
       </v-avatar>
-      <span class="ml-2 hidden-sm-and-down">Engie Cofely</span>
     </v-toolbar-title>
+    <!-- Search Bar -->
     <v-text-field flat
                   solo-inverted
                   prepend-icon="search"
                   label="Search"
-                  class="hidden-sm-and-down">
+                  class="hidden-xs-only c-search">
     </v-text-field>
     <v-spacer></v-spacer>
-    <v-toolbar-items class="mr-0">
+    <!-- Rigth menu for small screen-->
+    <v-menu offset-y
+            origin="center center"
+            :nudge-bottom="10"
+            transition="scale-transition"
+            :min-width="180"
+            v-if="$vuetify.breakpoint.xs">
+      <v-btn icon
+             slot="activator">
+        <v-icon>more_vert</v-icon>
+      </v-btn>
+      <c-setting-list></c-setting-list>
+    </v-menu>
+    <v-toolbar-items class="mr-0"
+                     v-if="!$vuetify.breakpoint.xs">
+      <!-- Custom Application menu -->
       <v-menu offset-y
               origin="center center"
               class="elelvation-1"
               :nudge-bottom="14"
               transition="scale-transition">
         <v-btn flat
+               class="c-button-toolbar"
                slot="activator">
-          <span>\{{lang}}</span>
-          <v-icon medium
-                  right>language</v-icon>
+          <v-icon medium>apps</v-icon>
         </v-btn>
-        <v-list class="pa-0">
-          <v-list-tile v-for="(item,index) in languages"
-                       @click="setLanguage(item.value)"
-                       :ripple="false"
-                       :key="index">
-            <v-list-tile-action>
-              <v-icon>language</v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title>\{{ item.label }}</v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
-          <v-divider></v-divider>
-        </v-list>
       </v-menu>
+      <!-- Notifications menu -->
       <v-menu offset-y
               origin="center center"
-              class="elelvation-1"
+              class="elelvation-1 c-button-menu"
               :nudge-bottom="14"
               transition="scale-transition">
         <v-btn flat
+               class="c-button-toolbar"
                slot="activator">
           <v-badge color="red"
                    overlap>
@@ -67,9 +86,11 @@
       <v-menu offset-y
               origin="center center"
               :nudge-bottom="10"
-              transition="scale-transition">
-        <v-btn large
-               flat
+              transition="scale-transition"
+              :min-width="58">
+        <v-btn flat
+               small
+               class="c-button-toolbar"
                slot="activator">
           <v-avatar size="30px"
                     color="grey lighten-4">
@@ -77,44 +98,34 @@
                  alt="Profil Setting" />
           </v-avatar>
         </v-btn>
-        <v-list class="pa-0">
-          <v-list-tile v-for="(item,index) in items"
-                       @click="item.click"
-                       ripple="ripple"
-                       rel="noopener"
-                       :key="index">
-            <v-list-tile-action v-if="item.icon">
-              <v-icon>\{{ item.icon }}</v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title>\{{ generateMessage(item.title) }}</v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
-        </v-list>
+        <c-setting-list></c-setting-list>
       </v-menu>
     </v-toolbar-items>
   </v-toolbar>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import CNotificationList from '@/components/widgets/NotificationList';
+import CSettingList from '@/components/widgets/SettingList';
 import { generateMessage } from '@/utils/i18n';
 
 export default {
   name: 'c-toolbar',
   components: {
     CNotificationList,
+    CSettingList,
   },
   data: () => ({
     languages: [
       {
         value: 'en',
         label: 'English',
+        icon: 'https://countryflags.io/us/flat/24.png',
       },
       {
         value: 'fr',
         label: 'Français',
+        icon: 'https://countryflags.io/fr/flat/24.png',
       },
     ],
     items: [
@@ -147,12 +158,7 @@ export default {
       },
     ],
   }),
-  computed: {
-    ...mapGetters({ language: 'app/language' }),
-    lang() {
-      return this.language;
-    },
-  },
+  computed: {},
   methods: {
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar');
@@ -166,7 +172,7 @@ export default {
 </script>
 <style scoped>
 .c-toolbar {
-  width: 285px;
+  width: 233px; /* aside_width - toolbar_icon_width*/
   font-size: 16px;
   height: 100%;
   padding: 6px;
@@ -174,5 +180,24 @@ export default {
 }
 .c-img {
   height: 40px;
+  width: 58px !important;
+}
+.c-search {
+  min-width: 350px;
+}
+.c-button-toolbar{
+  min-width: 65px !important;
+}
+/* On screens that are between 720 and 600px  */
+@media screen and (min-width: 600px) and (max-width: 720px) {
+  .c-search {
+    min-width: 280px;
+  }
+}
+/* On screens that are between 900 and 600px  */
+@media screen and (min-width: 600px) and (max-width: 850px) {
+  .c-toolbar {
+    width: 95px;
+  }
 }
 </style>

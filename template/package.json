@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@okta/okta-vue": "^1.0.1",
+    "axios": "^0.18.0",
     "locale2": "^2.2.0",
     "material-design-icons-iconfont": "^3.0.3",
     "vue": "^2.5.2",{{#router}}

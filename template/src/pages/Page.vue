@@ -20,15 +20,19 @@
 
 <script>
 import { generateMessage } from '@/utils/i18n';
+import services from '@/service_api/ServiceApiExtern/testing';
 
 export default {
   name: 'HelloWorld',
   data() {
     return {};
   },
+  created() {
+  },
   computed: {},
   methods: {
     generateMessage,
+    api_call: services.getDataFromServer,
   },
 };
 </script>
