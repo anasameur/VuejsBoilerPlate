@@ -7,6 +7,21 @@
                          app>
         <vue-perfect-scrollbar class="drawer-menu--scroll"
                                :settings="scrollSettings">
+            <v-toolbar flat
+                       class="transparent"
+                       v-if="!$vuetify.breakpoint.lgAndUp">
+                <v-list class="pa-0">
+                    <v-list-tile avatar>
+                        <v-list-tile-avatar color="grey lighten-4">
+                            <img src="@/assets/avatar.png">
+                        </v-list-tile-avatar>
+                        <v-list-tile-content>
+                            <v-list-tile-title>Nom prénom</v-list-tile-title>
+                        </v-list-tile-content>
+                    </v-list-tile>
+                </v-list>
+            </v-toolbar>
+            <v-divider></v-divider>
             <v-list dense
                     expand>
                 <template v-for="(item, i) in routes">
@@ -110,6 +125,16 @@ export default {
     scrollSettings: {
       maxScrollbarLength: 160,
     },
+    languages: [
+      {
+        value: 'en',
+        label: 'English',
+      },
+      {
+        value: 'fr',
+        label: 'Français',
+      },
+    ],
   }),
   computed: {
     routes() {
@@ -129,6 +154,10 @@ export default {
         // this.$store.commit('setNotification');
       },
     },
+    ...mapGetters({ language: 'app/language' }),
+    lang() {
+      return this.language;
+    },
   },
   methods: {
     genChildTarget(item, subItem) {
@@ -136,6 +165,9 @@ export default {
         return { name: subItem.component };
       }
       return `${item.group}/${subItem.name}`;
+    },
+    setLanguage(language) {
+      this.$store.dispatch('app/setLanguage', language);
     },
     generateRouteTitle,
   },
@@ -151,5 +183,10 @@ export default {
         height: calc(100vh - 48px);
         overflow: auto;
     }
+}
+</style>
+<style scoped>
+.c-toolbar {
+  background-image: url('../../assets/background.jpg');
 }
 </style>
