@@ -1,7 +1,12 @@
-'use strict'
-const merge = require('webpack-merge')
-const prodEnv = require('./prod.env')
+'use strict';
+const merge = require('webpack-merge');
+const prodEnv = require('./prod.env');
 
 module.exports = merge(prodEnv, {
-  NODE_ENV: '"development"'
-})
+  NODE_ENV: '"development"',
+  BASE_URL_EXT: '"https://{host}:{port}"',
+  BASE_URL_INT: '"https://{host}:{port}"',
+  OKTA_ISSUER: '"{OKTA-Issuer}"',
+  OKTA_CLIENT_ID: '"{OKTA-Client-Id}"',
+  OKTA_REDIRECT_URL: '"{Application-Redirect-Url}"',
+});

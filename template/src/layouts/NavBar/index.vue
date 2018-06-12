@@ -161,7 +161,7 @@ export default {
   computed: {},
   methods: {
     toggleSideBar() {
-      this.$store.dispatch('app/toggleSideBar');
+      this.$store.dispatch('app/toggleSideBarButton');
     },
     setLanguage(language) {
       this.$store.dispatch('app/setLanguage', language);
