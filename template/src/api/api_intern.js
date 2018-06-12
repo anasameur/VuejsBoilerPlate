@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const client = axios.create({
   // baseURL: 'https://es2.cofely.com:443',
-  baseURL: 'http://exasvf212:28080/ords/gtfrec01',
+  baseURL: 'http://{host}:{port}'
   json: true,
 });
 
