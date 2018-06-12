@@ -125,16 +125,6 @@ export default {
     scrollSettings: {
       maxScrollbarLength: 160,
     },
-    languages: [
-      {
-        value: 'en',
-        label: 'English',
-      },
-      {
-        value: 'fr',
-        label: 'Français',
-      },
-    ],
   }),
   computed: {
     routes() {
@@ -149,9 +139,8 @@ export default {
       get() {
         return this.sidebar.opened;
       },
-      set() {
-        // this.$store.dispatch('app/toggleSideBar');
-        // this.$store.commit('setNotification');
+      set(val) {
+        this.$store.dispatch('app/toggleSideBar', val);
       },
     },
     ...mapGetters({ language: 'app/language' }),

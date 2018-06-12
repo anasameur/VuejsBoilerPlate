@@ -2,8 +2,7 @@ import Vue from 'vue';
 import axios from 'axios';
 
 const client = axios.create({
-  // baseURL: 'https://es2.cofely.com:443',
-  baseURL: 'http://exasvf212:28080/ords/gtfrec01',
+  baseURL: process.BASE_URL_INT,
   json: true,
 });
 

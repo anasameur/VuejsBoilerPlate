@@ -7,9 +7,9 @@ import Auth from '@okta/okta-vue';
 
 // set Okta Configuration
 Vue.use(Auth, {
-  issuer: 'https://engie.okta-emea.com',
-  client_id: '0oa1qfpp2sp0MsVRW0i7',
-  redirect_uri: 'http://localhost:8080/implicit/callback',
+  issuer: process.env.OKTA_ISSUER,
+  client_id: process.env.OKTA_CLIENT_ID,
+  redirect_uri: process.env.OKTA_REDIRECT_URL,
   scope: 'openid profile email',
 });
 
@@ -60,9 +60,9 @@ const router = new Router({
       // To ensure the user has been authenticated before accessing your route,
       // activate the requiresAuth metadata:
 
-      meta: {
+      /* meta: {
         requiresAuth: true,
-      },
+      }, */
       children: [
         {
           path: 'home',
