@@ -3,7 +3,7 @@ import Client from '@/api/api_intern';
 export default {
   // service for getting employees
   async getDataFromServer() {
-    return Client.get('/gtf/api/v1/testing')
+    return Client.get('/socle/api/v1/testing')
       .then(response => response.data)
       .catch((error) => {
         // Error
