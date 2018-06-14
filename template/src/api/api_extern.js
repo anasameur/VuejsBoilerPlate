@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const client = axios.create({
-  baseURL: process.BASE_URL_EXT,
+  baseURL: process.env.BASE_URL_EXT,
   json: true,
 });
 
