@@ -2,7 +2,7 @@ import Vue from 'vue';
 import axios from 'axios';
 
 const client = axios.create({
-  baseURL: process.BASE_URL_INT,
+  baseURL: process.env.BASE_URL_INT,
   json: true,
 });
 
