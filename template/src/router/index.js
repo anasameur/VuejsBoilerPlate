@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Layout from '@/layouts/default';
+import handleCallback from '@/components/ImplicitCallBack';
 
 // import Okta Vue SDK
 import Auth from '@okta/okta-vue';
@@ -9,7 +10,7 @@ import Auth from '@okta/okta-vue';
 Vue.use(Auth, {
   issuer: process.env.OKTA_ISSUER,
   client_id: process.env.OKTA_CLIENT_ID,
-  redirect_uri: process.env.OKTA_REDIRECT_URL,
+  redirect_uri: `${location.origin}/implicit/callback`,
   scope: 'openid profile email',
 });
 
@@ -32,7 +33,7 @@ const router = new Router({
   routes: [
     {
       path: '/implicit/callback',
-      component: Auth.handleCallback(),
+      component: handleCallback,
     },
     {
       path: '*',
@@ -60,9 +61,9 @@ const router = new Router({
       // To ensure the user has been authenticated before accessing your route,
       // activate the requiresAuth metadata:
 
-      /* meta: {
+      meta: {
         requiresAuth: true,
-      }, */
+      },
       children: [
         {
           path: 'home',
