@@ -61,9 +61,9 @@ const router = new Router({
       // To ensure the user has been authenticated before accessing your route,
       // activate the requiresAuth metadata:
 
-      meta: {
+      /* meta: {
         requiresAuth: true,
-      },
+      }, */
       children: [
         {
           path: 'home',
